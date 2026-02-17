@@ -6,6 +6,7 @@ final class Engine: ObservableObject {
     @Published private(set) var isRunning: Bool = false
     @Published private(set) var lastError: String?
     @Published private(set) var currentImageURL: URL?
+    private var prefetched: (fileURL: URL, hash: String)?
     
     private var cancellables = Set<AnyCancellable>()
     private var timerCancellable: AnyCancellable?
@@ -13,6 +14,7 @@ final class Engine: ObservableObject {
     private var settings: AppSettings?
     private let changer = WallpaperChanger()
     private let history = HistoryStore()
+  private let recents = RecentFavoritesStore()
     
     func configure(with settings: AppSettings) {
         self.settings = settings
@@ -30,6 +32,9 @@ final class Engine: ObservableObject {
         restartTimer()
         Task { @MainActor in
             refreshCurrentWallpaper()
+        }
+        Task.detached { [weak self] in
+            await self?.prefetchNext()
         }
         Task.detached {
             let maxMB = UserDefaults.standard.object(forKey: "cacheMaxMB") as? Int ?? 512
@@ -83,10 +88,15 @@ final class Engine: ObservableObject {
         do {
             let screens = NSScreen.screens
             guard let settings else { return }
-            let provider: ImageProvider = providerFor(settings.provider)
-            let existing = Set(history.load(maxCount: settings.maxHistory))
-            let (tw, th) = targetPixelSize(from: screens)
-            let item = try await provider.fetchImage(targetWidth: tw, targetHeight: th, avoiding: existing, maxAttempts: 8)
+            var item: (fileURL: URL, hash: String)
+            if let p = prefetched {
+                item = p
+            } else {
+                let provider: ImageProvider = providerFor(settings.provider)
+                let existing = Set(history.load(maxCount: settings.maxHistory))
+                let (tw, th) = targetPixelSize(from: screens)
+                item = try await provider.fetchImage(targetWidth: tw, targetHeight: th, avoiding: existing, maxAttempts: 8)
+            }
             if settings.avoidDuplicates {
                 history.append(item.hash, maxCount: settings.maxHistory)
             }
@@ -94,8 +104,13 @@ final class Engine: ObservableObject {
             currentImageURL = item.fileURL
             lastError = nil
             lastChange = Date()
+            recents.addRecent(item.fileURL, max: 20)
             let maxBytes = Int64((settings.cacheMaxMB as Int) * 1024 * 1024)
             CacheManager.cleanupImagesIfNeeded(maxBytes: maxBytes, excluding: currentImageURL)
+            prefetched = nil
+            Task.detached { [weak self] in
+                await self?.prefetchNext()
+            }
         } catch {
             lastError = error.localizedDescription
         }
@@ -131,7 +146,38 @@ final class Engine: ObservableObject {
         case .picsum:
             return PicsumProvider()
         case .unsplash:
-            return UnsplashProvider()
+            if let s = settings, !s.unsplashAccessKey.isEmpty {
+                return UnsplashAPIProvider(key: s.unsplashAccessKey, query: s.unsplashQuery)
+            } else {
+                return UnsplashProvider()
+            }
+        }
+    }
+    
+    private func prefetchNext() async {
+        guard let settings else { return }
+        let provider: ImageProvider = providerFor(settings.provider)
+        let existing = Set(history.load(maxCount: settings.maxHistory))
+        let (tw, th) = await MainActor.run { targetPixelSize(from: NSScreen.screens) }
+        do {
+            let item = try await provider.fetchImage(targetWidth: tw, targetHeight: th, avoiding: existing, maxAttempts: 6)
+            prefetched = item
+        } catch {
+            prefetched = nil
+        }
+    }
+    
+    @MainActor
+    func setImage(url: URL) async {
+        do {
+            let screens = NSScreen.screens
+            try changer.setWallpaper(url: url, on: screens)
+            currentImageURL = url
+            lastError = nil
+            lastChange = Date()
+            recents.addRecent(url, max: 20)
+        } catch {
+            lastError = error.localizedDescription
         }
     }
 }

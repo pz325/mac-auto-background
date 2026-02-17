@@ -1,9 +1,11 @@
 import AppKit
 
+@MainActor
 final class StatusItemManager: ObservableObject {
     private var statusItem: NSStatusItem?
     private weak var settings: AppSettings?
     private weak var engine: Engine?
+    private let store = RecentFavoritesStore()
     
     func configure(settings: AppSettings, engine: Engine) {
         self.settings = settings
@@ -26,6 +28,8 @@ final class StatusItemManager: ObservableObject {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         item.button?.image = IconGenerator.makeStatusIcon(size: 18)
         item.button?.imagePosition = .imageOnly
+        item.isVisible = true
+        item.behavior = []
         statusItem = item
     }
     
@@ -47,6 +51,33 @@ final class StatusItemManager: ObservableObject {
         let changeItem = NSMenuItem(title: "立即更换", action: #selector(changeNow), keyEquivalent: "")
         changeItem.target = self
         menu.addItem(changeItem)
+        
+        let favTitle = store.isFavorite(engine.currentImageURL) ? "取消收藏当前" : "收藏当前"
+        let favItem = NSMenuItem(title: favTitle, action: #selector(toggleFavoriteCurrent), keyEquivalent: "")
+        favItem.target = self
+        menu.addItem(favItem)
+        
+        let recentSub = NSMenu(title: "最近")
+        for url in Array(store.recent().prefix(5)) {
+            let it = NSMenuItem(title: url.lastPathComponent, action: #selector(setFromMenu(_:)), keyEquivalent: "")
+            it.representedObject = url.path
+            it.target = self
+            recentSub.addItem(it)
+        }
+        let recentRoot = NSMenuItem(title: "最近", action: nil, keyEquivalent: "")
+        menu.setSubmenu(recentSub, for: recentRoot)
+        menu.addItem(recentRoot)
+        
+        let favSub = NSMenu(title: "收藏")
+        for url in store.favorites().prefix(10) {
+            let it = NSMenuItem(title: url.lastPathComponent, action: #selector(setFromMenu(_:)), keyEquivalent: "")
+            it.representedObject = url.path
+            it.target = self
+            favSub.addItem(it)
+        }
+        let favRoot = NSMenuItem(title: "收藏", action: nil, keyEquivalent: "")
+        menu.setSubmenu(favSub, for: favRoot)
+        menu.addItem(favRoot)
         
         menu.addItem(.separator())
         
@@ -77,6 +108,20 @@ final class StatusItemManager: ObservableObject {
     @objc private func changeNow() {
         Task { [weak self] in
             await self?.engine?.changeNow()
+        }
+    }
+    
+    @objc private func toggleFavoriteCurrent() {
+        guard let url = engine?.currentImageURL else { return }
+        store.toggleFavorite(url)
+        rebuildMenu()
+    }
+    
+    @objc private func setFromMenu(_ sender: NSMenuItem) {
+        guard let path = sender.representedObject as? String else { return }
+        let url = URL(fileURLWithPath: path)
+        Task { [weak self] in
+            await self?.engine?.setImage(url: url)
         }
     }
     

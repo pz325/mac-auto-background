@@ -4,6 +4,8 @@ import AppKit
 struct ContentView: View {
     @EnvironmentObject var settings: AppSettings
     @EnvironmentObject var engine: Engine
+    private let favStore = RecentFavoritesStore()
+    @State private var isFavorite: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -32,6 +34,22 @@ struct ContentView: View {
                     Text(label(for: p)).tag(p)
                 }
             }
+            if settings.provider == .unsplash || settings.provider == .auto {
+                HStack {
+                    Text("Unsplash Access Key")
+                    Spacer()
+                    TextField("可选", text: $settings.unsplashAccessKey)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(width: 360)
+                }
+                HStack {
+                    Text("关键词")
+                    Spacer()
+                    TextField("例如: nature, city", text: $settings.unsplashQuery)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(width: 360)
+                }
+            }
             HStack(spacing: 12) {
                 Button("立即更换") {
                     Task { await engine.changeNow() }
@@ -49,8 +67,16 @@ struct ContentView: View {
             }
             if let url = engine.currentImageURL, let img = NSImage(contentsOf: url) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("当前桌面预览")
-                        .font(.headline)
+                    HStack {
+                        Text("当前桌面预览")
+                            .font(.headline)
+                        Spacer()
+                        Button(isFavorite ? "取消收藏" : "收藏当前") {
+                            favStore.toggleFavorite(url)
+                            isFavorite.toggle()
+                        }
+                        .buttonStyle(.bordered)
+                    }
                     Image(nsImage: img)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -72,6 +98,12 @@ struct ContentView: View {
         }
         .padding(20)
         .frame(minWidth: 740, minHeight: 600)
+        .onAppear {
+            isFavorite = favStore.isFavorite(engine.currentImageURL)
+        }
+        .onChange(of: engine.currentImageURL) { _ in
+            isFavorite = favStore.isFavorite(engine.currentImageURL)
+        }
     }
     
     private func label(for p: ProviderType) -> String {

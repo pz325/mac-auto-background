@@ -82,6 +82,46 @@ final class UnsplashProvider: ImageProvider {
     }
 }
 
+final class UnsplashAPIProvider: ImageProvider {
+    private let key: String
+    private var query: String?
+    init(key: String, query: String?) {
+        self.key = key
+        self.query = query?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if self.query?.isEmpty == true { self.query = nil }
+    }
+    struct Photo: Decodable { let urls: Urls }
+    struct Urls: Decodable { let raw: String }
+    func fetchImage(targetWidth: Int, targetHeight: Int, avoiding hashes: Set<String>, maxAttempts: Int) async throws -> (fileURL: URL, hash: String) {
+        for _ in 0..<maxAttempts {
+            var comps = URLComponents(string: "https://api.unsplash.com/photos/random")!
+            var items = [URLQueryItem(name: "orientation", value: "landscape"), URLQueryItem(name: "content_filter", value: "high")]
+            if let q = query { items.append(URLQueryItem(name: "query", value: q)) }
+            comps.queryItems = items
+            var req = URLRequest(url: comps.url!)
+            req.addValue("Client-ID \(key)", forHTTPHeaderField: "Authorization")
+            let (jdata, _) = try await URLSession.shared.data(for: req)
+            let photo = try JSONDecoder().decode(Photo.self, from: jdata)
+            guard var raw = URLComponents(string: photo.urls.raw) else { continue }
+            raw.queryItems = [URLQueryItem(name: "w", value: "\(targetWidth)"), URLQueryItem(name: "h", value: "\(targetHeight)")]
+            let (data, _) = try await URLSession.shared.data(from: raw.url!)
+            let hs = HistoryStore()
+            let hash = hs.sha256(of: data)
+            if hashes.contains(hash) { continue }
+            let fileURL = try saveImage(data: data, suffix: "jpg")
+            return (fileURL, hash)
+        }
+        throw NSError(domain: "ImageProvider", code: -5, userInfo: [NSLocalizedDescriptionKey: "Unable to fetch from Unsplash API"])
+    }
+    private func saveImage(data: Data, suffix: String) throws -> URL {
+        let dir = try ImagesDirectory.url()
+        let ts = Int(Date().timeIntervalSince1970)
+        let name = "img-\(ts)-\(UUID().uuidString).\(suffix)"
+        let file = dir.appendingPathComponent(name)
+        try data.write(to: file, options: .atomic)
+        return file
+    }
+}
 final class AutoProvider: ImageProvider {
     private let providers: [ImageProvider] = [BingProvider(), PicsumProvider(), UnsplashProvider()]
     func fetchImage(targetWidth: Int, targetHeight: Int, avoiding hashes: Set<String>, maxAttempts: Int) async throws -> (fileURL: URL, hash: String) {

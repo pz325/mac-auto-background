@@ -26,6 +26,12 @@ final class AppSettings: ObservableObject {
     @Published var cacheMaxMB: Int {
         didSet { UserDefaults.standard.set(cacheMaxMB, forKey: "cacheMaxMB") }
     }
+    @Published var unsplashAccessKey: String {
+        didSet { UserDefaults.standard.set(unsplashAccessKey, forKey: "unsplashAccessKey") }
+    }
+    @Published var unsplashQuery: String {
+        didSet { UserDefaults.standard.set(unsplashQuery, forKey: "unsplashQuery") }
+    }
     
     init() {
         let d = UserDefaults.standard
@@ -39,6 +45,8 @@ final class AppSettings: ObservableObject {
         launchAtLogin = d.object(forKey: "launchAtLogin") as? Bool ?? false
         showMenuBarIcon = d.object(forKey: "showMenuBarIcon") as? Bool ?? true
         cacheMaxMB = d.object(forKey: "cacheMaxMB") as? Int ?? 512
+        unsplashAccessKey = d.string(forKey: "unsplashAccessKey") ?? ""
+        unsplashQuery = d.string(forKey: "unsplashQuery") ?? ""
     }
 }
 

@@ -18,10 +18,13 @@ struct MacAutoBackgroundApp: App {
                 .environmentObject(settings)
                 .environmentObject(engine)
                 .onAppear {
-                    NSApplication.shared.applicationIconImage = IconGenerator.makeIcon()
                     engine.configure(with: settings)
                     engine.start()
                     Task { @MainActor in
+                        if let win = NSApp.windows.first {
+                            win.setContentSize(NSSize(width: 760, height: 620))
+                            win.center()
+                        }
                         engine.refreshCurrentWallpaper()
                         statusItem.configure(settings: settings, engine: engine)
                         statusItem.updateVisibility()

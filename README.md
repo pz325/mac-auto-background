@@ -12,6 +12,7 @@ Auto-change macOS desktop wallpaper on a schedule and on wake. Supports multiple
 - Standard AppIcon.appiconset and AppIcon.icns included
 - Optional menu bar icon (toggleable)
 - Launch at login (macOS 13+)
+ - Multiple providers: Auto (CN‑friendly), Bing, Picsum, Unsplash
 
 ## Requirements
 - macOS 12 or later
@@ -72,6 +73,11 @@ This updates:
 - “Change Now” button to force an immediate update
 - Show menu bar icon: keep a status item in the menu bar
 - Launch at login: auto‑start the app after user login (macOS 13+)
+ - Providers:
+   - Auto: tries Bing → Picsum → Unsplash in order, favoring CN reachability
+   - Bing: daily wallpaper via www.bing.com (no key)
+   - Picsum: random images via picsum.photos (no key)
+   - Unsplash: random images via source.unsplash.com (no key used; API key optional but not required here)
 
 ## Release Build & Packaging
 - One‑click release script:
@@ -100,6 +106,10 @@ cd <repo-root>
   - [CacheManager.swift](Sources/MacAutoBackground/CacheManager.swift)
 - One‑click release:
   - [scripts/release.sh](scripts/release.sh)
+ - Additional providers and CN‑friendly auto selection:
+   - [ImageProvider.swift](Sources/MacAutoBackground/ImageProvider.swift)
+   - [Settings.swift](Sources/MacAutoBackground/Settings.swift)
+   - [ContentView.swift](Sources/MacAutoBackground/ContentView.swift)
 
 ## Implementation Notes
 - Concurrency: AppKit types (e.g., `NSScreen`) remain on the main actor; only primitive values cross `await` boundaries to satisfy Swift 6 concurrency checks.

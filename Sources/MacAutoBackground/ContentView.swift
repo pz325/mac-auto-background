@@ -14,7 +14,6 @@ struct ContentView: View {
                     Text("\(settings.intervalMinutes)")
                         .frame(width: 60, alignment: .trailing)
                 }
-                .labelsHidden()
             }
             HStack {
                 Text("图片缓存上限(MB)")
@@ -23,7 +22,6 @@ struct ContentView: View {
                     Text("\(settings.cacheMaxMB)")
                         .frame(width: 60, alignment: .trailing)
                 }
-                .labelsHidden()
             }
             Toggle("睡眠/合盖唤醒后更换", isOn: $settings.changeOnWake)
             Toggle("避免重复图片", isOn: $settings.avoidDuplicates)
@@ -73,12 +71,15 @@ struct ContentView: View {
             Spacer()
         }
         .padding(20)
-        .frame(minWidth: 560, minHeight: 420)
+        .frame(minWidth: 740, minHeight: 600)
     }
     
     private func label(for p: ProviderType) -> String {
         switch p {
+        case .auto: return "自动选择（优先中国大陆可访问源）"
+        case .bing: return "Bing 每日壁纸"
         case .picsum: return "Picsum 随机高清图"
+        case .unsplash: return "Unsplash 随机图"
         }
     }
 }

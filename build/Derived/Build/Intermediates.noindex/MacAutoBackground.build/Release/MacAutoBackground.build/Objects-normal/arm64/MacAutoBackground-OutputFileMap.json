@@ -1,0 +1,138 @@
+{
+  "" : {
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackground-master.dia",
+    "emit-module-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackground-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackground-master-emit-module.dia",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackground-master.swiftdeps"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/CacheManager.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/CacheManager~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/ContentView.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/HistoryStore.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/HistoryStore~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/IconGenerator.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/IconGenerator~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/ImageProvider.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImageProvider~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/ImagesDirectory.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/ImagesDirectory~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/LaunchAtLogin.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/LaunchAtLogin~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/MacAutoBackgroundApp.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/MacAutoBackgroundApp~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/Scheduler.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Scheduler~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/Settings.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/Settings~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/StatusItemManager.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/StatusItemManager~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/WallpaperChanger.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/WallpaperChanger~partial.swiftmodule"
+  },
+  "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/menrfa/Documents/trae_projects/mac_auto_background/build/Derived/Build/Intermediates.noindex/MacAutoBackground.build/Release/MacAutoBackground.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

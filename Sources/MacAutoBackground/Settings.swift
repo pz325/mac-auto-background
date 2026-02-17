@@ -32,7 +32,7 @@ final class AppSettings: ObservableObject {
         let defaultInterval = 60
         intervalMinutes = d.object(forKey: "intervalMinutes") as? Int ?? defaultInterval
         changeOnWake = d.object(forKey: "changeOnWake") as? Bool ?? true
-        let p = d.string(forKey: "provider").flatMap { ProviderType(rawValue: $0) } ?? .picsum
+        let p = d.string(forKey: "provider").flatMap { ProviderType(rawValue: $0) } ?? .auto
         provider = p
         avoidDuplicates = d.object(forKey: "avoidDuplicates") as? Bool ?? true
         maxHistory = d.object(forKey: "maxHistory") as? Int ?? 300
@@ -43,7 +43,10 @@ final class AppSettings: ObservableObject {
 }
 
 enum ProviderType: String, CaseIterable, Identifiable {
+    case auto
+    case bing
     case picsum
+    case unsplash
     
     var id: String { rawValue }
 }

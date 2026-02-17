@@ -115,8 +115,14 @@ final class Engine: ObservableObject {
     
     private func providerFor(_ type: ProviderType) -> ImageProvider {
         switch type {
+        case .auto:
+            return AutoProvider()
+        case .bing:
+            return BingProvider()
         case .picsum:
             return PicsumProvider()
+        case .unsplash:
+            return UnsplashProvider()
         }
     }
 }

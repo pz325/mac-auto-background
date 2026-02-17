@@ -1,0 +1,128 @@
+{
+  "source": "/Users/menrfa/Documents/trae_projects/mac_auto_background/Sources/MacAutoBackground/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "上次更换时间：%@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "错误：%@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "当前桌面预览不可用",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "睡眠/合盖唤醒后更换",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "避免重复图片",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "登录时自动启动",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "显示菜单栏图标",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "图片来源",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "自动更换间隔(分钟)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 11
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "图片缓存上限(MB)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "立即更换",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
+        "key": "测试获取图片",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "当前桌面预览",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 52
+        }
+      }
+    ]
+  },
+  "version": 1
+}

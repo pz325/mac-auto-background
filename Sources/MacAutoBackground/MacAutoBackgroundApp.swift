@@ -20,6 +20,9 @@ struct MacAutoBackgroundApp: App {
                     NSApplication.shared.applicationIconImage = IconGenerator.makeIcon()
                     engine.configure(with: settings)
                     engine.start()
+                    Task { @MainActor in
+                        engine.refreshCurrentWallpaper()
+                    }
                 }
         }
     }

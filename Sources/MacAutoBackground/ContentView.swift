@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 struct ContentView: View {
     @EnvironmentObject var settings: AppSettings
@@ -37,10 +38,31 @@ struct ContentView: View {
             if let err = engine.lastError {
                 Text("错误：\(err)").foregroundStyle(.red)
             }
+            if let url = engine.currentImageURL, let img = NSImage(contentsOf: url) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("当前桌面预览")
+                        .font(.headline)
+                    Image(nsImage: img)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 180)
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8).stroke(Color.secondary.opacity(0.2))
+                        )
+                    Text(url.lastPathComponent)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                }
+            } else {
+                Text("当前桌面预览不可用").foregroundStyle(.secondary)
+            }
             Spacer()
         }
         .padding(20)
-        .frame(minWidth: 460, minHeight: 260)
+        .frame(minWidth: 560, minHeight: 420)
     }
     
     private func label(for p: ProviderType) -> String {
@@ -59,4 +81,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 #endif
-

@@ -5,6 +5,7 @@ final class Engine: ObservableObject {
     @Published private(set) var lastChange: Date?
     @Published private(set) var isRunning: Bool = false
     @Published private(set) var lastError: String?
+    @Published private(set) var currentImageURL: URL?
     
     private var cancellables = Set<AnyCancellable>()
     private var timerCancellable: AnyCancellable?
@@ -27,6 +28,9 @@ final class Engine: ObservableObject {
         guard !isRunning else { return }
         isRunning = true
         restartTimer()
+        Task { @MainActor in
+            refreshCurrentWallpaper()
+        }
         let nc = NSWorkspace.shared.notificationCenter
         nc.addObserver(self, selector: #selector(handleWake), name: NSWorkspace.didWakeNotification, object: nil)
         nc.addObserver(self, selector: #selector(handleScreenWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
@@ -73,10 +77,19 @@ final class Engine: ObservableObject {
                 history.append(item.hash, maxCount: settings.maxHistory)
             }
             try changer.setWallpaper(url: item.fileURL, on: screens)
+            currentImageURL = item.fileURL
             lastError = nil
             lastChange = Date()
         } catch {
             lastError = error.localizedDescription
+        }
+    }
+    
+    @MainActor
+    func refreshCurrentWallpaper() {
+        let screen = NSScreen.main ?? NSScreen.screens.first
+        if let sc = screen, let url = NSWorkspace.shared.desktopImageURL(for: sc) {
+            currentImageURL = url
         }
     }
     

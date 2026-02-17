@@ -55,18 +55,27 @@ final class Engine: ObservableObject {
         timerCancellable = Timer.publish(every: TimeInterval(interval * 60), on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
-                Task { await self?.changeNow() }
+                guard let s = self else { return }
+                Task { @MainActor in
+                    await s.changeNow()
+                }
             }
     }
     
     @objc private func handleWake() {
         guard settings?.changeOnWake == true else { return }
-        Task { await changeNow() }
+        let s = self
+        Task { @MainActor in
+            await s.changeNow()
+        }
     }
     
     @objc private func handleScreenWake() {
         guard settings?.changeOnWake == true else { return }
-        Task { await changeNow() }
+        let s = self
+        Task { @MainActor in
+            await s.changeNow()
+        }
     }
     
     @MainActor

@@ -1,8 +1,21 @@
 import SwiftUI
 import AppKit
 
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            for win in sender.windows {
+                win.makeKeyAndOrderFront(nil)
+            }
+        }
+        sender.activate(ignoringOtherApps: true)
+        return true
+    }
+}
+
 @main
 struct MacAutoBackgroundApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var settings = AppSettings()
     @StateObject private var engine = Engine()
     @StateObject private var statusItem = StatusItemManager()

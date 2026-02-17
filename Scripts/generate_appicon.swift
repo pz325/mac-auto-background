@@ -5,12 +5,14 @@ func makeIcon(size: CGFloat = 1024) -> NSImage {
     let img = NSImage(size: NSSize(width: size, height: size))
     img.lockFocus()
     let rect = NSRect(x: 0, y: 0, width: size, height: size)
+    let outerInset = size * 0.08
+    let bgRect = rect.insetBy(dx: outerInset, dy: outerInset)
     let gradientTop = NSColor(calibratedRed: 0.22, green: 0.63, blue: 0.98, alpha: 1)
     let gradientBottom = NSColor(calibratedRed: 0.09, green: 0.43, blue: 0.84, alpha: 1)
     let gradient = NSGradient(starting: gradientTop, ending: gradientBottom)
-    NSBezierPath(roundedRect: rect, xRadius: size * 0.22, yRadius: size * 0.22).addClip()
-    gradient?.draw(in: rect, angle: -90)
-    let inset = rect.insetBy(dx: size * 0.12, dy: size * 0.18)
+    NSBezierPath(roundedRect: bgRect, xRadius: size * 0.22, yRadius: size * 0.22).addClip()
+    gradient?.draw(in: bgRect, angle: -90)
+    let inset = bgRect.insetBy(dx: size * 0.12, dy: size * 0.18)
     let sunCenter = NSPoint(x: inset.midX + size * 0.18, y: inset.midY + size * 0.18)
     let sunRadius = size * 0.08
     NSColor(calibratedRed: 1, green: 0.89, blue: 0.45, alpha: 1).setFill()

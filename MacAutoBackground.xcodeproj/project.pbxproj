@@ -1,0 +1,251 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A0000010000000000000001 /* MacAutoBackgroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000010000000000000001 /* MacAutoBackgroundApp.swift */; };
+		1A0000020000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000020000000000000001 /* ContentView.swift */; };
+		1A0000030000000000000001 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000030000000000000001 /* Settings.swift */; };
+		1A0000040000000000000001 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000040000000000000001 /* Scheduler.swift */; };
+		1A0000050000000000000001 /* WallpaperChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000050000000000000001 /* WallpaperChanger.swift */; };
+		1A0000060000000000000001 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000060000000000000001 /* ImageProvider.swift */; };
+		1A0000070000000000000001 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000070000000000000001 /* HistoryStore.swift */; };
+		1A0000080000000000000001 /* IconGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000080000000000000001 /* IconGenerator.swift */; };
+		1A0000090000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2000010000000000000001 /* Assets.xcassets */; };
+		1A00000A0000000000000001 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1A2000020000000000000001 /* AppIcon.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A1000010000000000000001 /* MacAutoBackgroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MacAutoBackgroundApp.swift; path = Sources/MacAutoBackground/MacAutoBackgroundApp.swift; sourceTree = "<group>"; };
+		1A1000020000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = Sources/MacAutoBackground/ContentView.swift; sourceTree = "<group>"; };
+		1A1000030000000000000001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Sources/MacAutoBackground/Settings.swift; sourceTree = "<group>"; };
+		1A1000040000000000000001 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Sources/MacAutoBackground/Scheduler.swift; sourceTree = "<group>"; };
+		1A1000050000000000000001 /* WallpaperChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallpaperChanger.swift; path = Sources/MacAutoBackground/WallpaperChanger.swift; sourceTree = "<group>"; };
+		1A1000060000000000000001 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageProvider.swift; path = Sources/MacAutoBackground/ImageProvider.swift; sourceTree = "<group>"; };
+		1A1000070000000000000001 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryStore.swift; path = Sources/MacAutoBackground/HistoryStore.swift; sourceTree = "<group>"; };
+		1A1000080000000000000001 /* IconGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconGenerator.swift; path = Sources/MacAutoBackground/IconGenerator.swift; sourceTree = "<group>"; };
+		1A1000090000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Xcode/Info.plist; sourceTree = "<group>"; };
+		1A2000010000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/MacAutoBackground/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		1A2000020000000000000001 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = Sources/MacAutoBackground/Resources/AppIcon.icns; sourceTree = "<group>"; };
+		1AB000010000000000000001 /* MacAutoBackground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacAutoBackground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A3000010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A4000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				1A5000010000000000000001 /* Project */,
+				1AB000020000000000000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A5000010000000000000001 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				1A1000010000000000000001 /* MacAutoBackgroundApp.swift */,
+				1A1000020000000000000001 /* ContentView.swift */,
+				1A1000030000000000000001 /* Settings.swift */,
+				1A1000040000000000000001 /* Scheduler.swift */,
+				1A1000050000000000000001 /* WallpaperChanger.swift */,
+				1A1000060000000000000001 /* ImageProvider.swift */,
+				1A1000070000000000000001 /* HistoryStore.swift */,
+				1A1000080000000000000001 /* IconGenerator.swift */,
+				1A2000010000000000000001 /* Assets.xcassets */,
+				1A2000020000000000000001 /* AppIcon.icns */,
+				1A1000090000000000000001 /* Info.plist */,
+			);
+			path = "";
+			sourceTree = "<group>";
+		};
+		1AB000020000000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AB000010000000000000001 /* MacAutoBackground.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A6000010000000000000001 /* MacAutoBackground */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A9000010000000000000001 /* Build configuration list for PBXNativeTarget "MacAutoBackground" */;
+			buildPhases = (
+				1A7000010000000000000001 /* Sources */,
+				1A3000010000000000000001 /* Frameworks */,
+				1A8000010000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacAutoBackground;
+			productName = MacAutoBackground;
+			productReference = 1AB000010000000000000001 /* MacAutoBackground.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1A6000010000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 1A9000020000000000000001 /* Build configuration list for PBXProject "MacAutoBackground" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A4000000000000000000001;
+			productRefGroup = 1AB000020000000000000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A6000010000000000000001 /* MacAutoBackground */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A8000010000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0000090000000000000001 /* Assets.xcassets in Resources */,
+				1A00000A0000000000000001 /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A7000010000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0000010000000000000001 /* MacAutoBackgroundApp.swift in Sources */,
+				1A0000020000000000000001 /* ContentView.swift in Sources */,
+				1A0000030000000000000001 /* Settings.swift in Sources */,
+				1A0000040000000000000001 /* Scheduler.swift in Sources */,
+				1A0000050000000000000001 /* WallpaperChanger.swift in Sources */,
+				1A0000060000000000000001 /* ImageProvider.swift in Sources */,
+				1A0000070000000000000001 /* HistoryStore.swift in Sources */,
+				1A0000080000000000000001 /* IconGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1A9000030000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Xcode/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MacAutoBackground;
+				PRODUCT_NAME = MacAutoBackground;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				SWIFT_VERSION = 5.10;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		1A9000040000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Xcode/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MacAutoBackground;
+				PRODUCT_NAME = MacAutoBackground;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				SWIFT_VERSION = 5.10;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		1A9000050000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1A9000060000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A9000010000000000000001 /* Build configuration list for PBXNativeTarget "MacAutoBackground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A9000030000000000000001 /* Debug */,
+				1A9000040000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1A9000020000000000000001 /* Build configuration list for PBXProject "MacAutoBackground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A9000050000000000000001 /* Debug */,
+				1A9000060000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 1A0000000000000000000001 /* Project object */;
+}
+

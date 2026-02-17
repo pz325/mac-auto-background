@@ -1,4 +1,5 @@
 # MacAutoBackground
+[![Built by Trae](https://img.shields.io/badge/Built%20by-Trae-0b5cff?style=for-the-badge)](https://www.trae.ai/)
 
 Auto-change macOS desktop wallpaper on a schedule and on wake. Supports multiple displays, fetches high‑quality online images, and avoids duplicates using content hashes. Built with Swift + SwiftUI, targeting macOS 12+.
 

@@ -7,6 +7,8 @@ Auto-change macOS desktop wallpaper on a schedule and on wake. Supports multiple
 - Change wallpaper after wake/lid open
 - Multiple displays supported (sets each screen)
 - Online HD image source (Picsum) with SHA256 de‑duplication
+- Prefetch next image for instant switching
+- Recent and Favorites lists with one‑click restore
 - Simple settings UI with persistence
 - Dock icon while running; vector‑drawn app icon
 - Standard AppIcon.appiconset and AppIcon.icns included
@@ -77,7 +79,18 @@ This updates:
    - Auto: tries Bing → Picsum → Unsplash in order, favoring CN reachability
    - Bing: daily wallpaper via www.bing.com (no key)
    - Picsum: random images via picsum.photos (no key)
-   - Unsplash: random images via source.unsplash.com (no key used; API key optional but not required here)
+   - Unsplash: random images via source.unsplash.com (no key), or official API if Access Key is provided
+- Unsplash Access Key (optional) and Keywords (optional) fields appear when provider is “Unsplash” or “Auto”
+- Favorites button in the preview area to add/remove the current wallpaper from your Favorites
+
+## Menu Bar
+- Show/hide via the “Show menu bar icon” toggle in Settings
+- Menu items:
+  - Open Window, Change Now
+  - Favorite Current / Unfavorite Current
+  - Recent: last 5 wallpapers
+  - Favorites: your starred wallpapers
+  - Launch at Login toggle, Quit
 
 ## Release Build & Packaging
 - One‑click release script:
@@ -110,6 +123,15 @@ cd <repo-root>
    - [ImageProvider.swift](Sources/MacAutoBackground/ImageProvider.swift)
    - [Settings.swift](Sources/MacAutoBackground/Settings.swift)
    - [ContentView.swift](Sources/MacAutoBackground/ContentView.swift)
+ - Prefetch next image for instant switching:
+   - [Scheduler.swift](Sources/MacAutoBackground/Scheduler.swift)
+ - Recent and Favorites:
+   - [RecentFavoritesStore.swift](Sources/MacAutoBackground/RecentFavoritesStore.swift)
+   - [StatusItemManager.swift](Sources/MacAutoBackground/StatusItemManager.swift)
+   - [ContentView.swift](Sources/MacAutoBackground/ContentView.swift)
+ - Unsplash API integration (optional Access Key + keywords):
+   - [ImageProvider.swift](Sources/MacAutoBackground/ImageProvider.swift)
+   - [Settings.swift](Sources/MacAutoBackground/Settings.swift)
 
 ## Implementation Notes
 - Concurrency: AppKit types (e.g., `NSScreen`) remain on the main actor; only primitive values cross `await` boundaries to satisfy Swift 6 concurrency checks.

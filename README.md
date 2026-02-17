@@ -10,6 +10,8 @@ Auto-change macOS desktop wallpaper on a schedule and on wake. Supports multiple
 - Simple settings UI with persistence
 - Dock icon while running; vector‑drawn app icon
 - Standard AppIcon.appiconset and AppIcon.icns included
+- Optional menu bar icon (toggleable)
+- Launch at login (macOS 13+)
 
 ## Requirements
 - macOS 12 or later
@@ -68,6 +70,36 @@ This updates:
 - Avoid duplicates: content‑hash based history
 - Image source: Picsum random HD (no API key)
 - “Change Now” button to force an immediate update
+- Show menu bar icon: keep a status item in the menu bar
+- Launch at login: auto‑start the app after user login (macOS 13+)
+
+## Release Build & Packaging
+- One‑click release script:
+
+```bash
+cd <repo-root>
+./scripts/release.sh                # uses MARKETING_VERSION or defaults to 1.0.0
+./scripts/release.sh 1.0.2          # explicitly set version
+```
+
+- Outputs:
+  - `dist/MacAutoBackground_v<version>.zip`
+  - `dist/MacAutoBackground_v<version>.dmg`
+- Requirements:
+  - Xcode 15+, macOS 12+
+- Gatekeeper:
+  - Unsigned builds are for internal testing. If blocked, right‑click the app → Open → Open.
+
+## Recent Changes
+- Menu bar residency:
+  - [StatusItemManager.swift](Sources/MacAutoBackground/StatusItemManager.swift)
+- Login item (launch at login):
+  - [LaunchAtLogin.swift](Sources/MacAutoBackground/LaunchAtLogin.swift)
+- Application Support storage helpers:
+  - [ImagesDirectory.swift](Sources/MacAutoBackground/ImagesDirectory.swift)
+  - [CacheManager.swift](Sources/MacAutoBackground/CacheManager.swift)
+- One‑click release:
+  - [scripts/release.sh](scripts/release.sh)
 
 ## Implementation Notes
 - Concurrency: AppKit types (e.g., `NSScreen`) remain on the main actor; only primitive values cross `await` boundaries to satisfy Swift 6 concurrency checks.
@@ -81,7 +113,6 @@ This updates:
 
 ## Roadmap
 - Additional providers (e.g., Bing, Unsplash) with optional keys
-- Menu bar mode and login‑item auto‑start
 - Per‑display provider/strategy and history browsing
 
 ## License

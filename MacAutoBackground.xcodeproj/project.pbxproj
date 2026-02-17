@@ -17,6 +17,10 @@
 		1A0000080000000000000001 /* IconGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1000080000000000000001 /* IconGenerator.swift */; };
 		1A0000090000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2000010000000000000001 /* Assets.xcassets */; };
 		1A00000A0000000000000001 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1A2000020000000000000001 /* AppIcon.icns */; };
+		1AC2F0010000000000000001 /* StatusItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0010000000000000001 /* StatusItemManager.swift */; };
+		1AC2F0020000000000000001 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0020000000000000001 /* LaunchAtLogin.swift */; };
+		1AC2F0030000000000000001 /* ImagesDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0030000000000000001 /* ImagesDirectory.swift */; };
+		1AC2F0040000000000000001 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0040000000000000001 /* CacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		1A2000010000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/MacAutoBackground/Resources/Assets.xcassets; sourceTree = "<group>"; };
 		1A2000020000000000000001 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = Sources/MacAutoBackground/Resources/AppIcon.icns; sourceTree = "<group>"; };
 		1AB000010000000000000001 /* MacAutoBackground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacAutoBackground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AC1F0010000000000000001 /* StatusItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusItemManager.swift; path = Sources/MacAutoBackground/StatusItemManager.swift; sourceTree = "<group>"; };
+		1AC1F0020000000000000001 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LaunchAtLogin.swift; path = Sources/MacAutoBackground/LaunchAtLogin.swift; sourceTree = "<group>"; };
+		1AC1F0030000000000000001 /* ImagesDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImagesDirectory.swift; path = Sources/MacAutoBackground/ImagesDirectory.swift; sourceTree = "<group>"; };
+		1AC1F0040000000000000001 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CacheManager.swift; path = Sources/MacAutoBackground/CacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,10 @@
 				1A1000060000000000000001 /* ImageProvider.swift */,
 				1A1000070000000000000001 /* HistoryStore.swift */,
 				1A1000080000000000000001 /* IconGenerator.swift */,
+				1AC1F0010000000000000001 /* StatusItemManager.swift */,
+				1AC1F0020000000000000001 /* LaunchAtLogin.swift */,
+				1AC1F0030000000000000001 /* ImagesDirectory.swift */,
+				1AC1F0040000000000000001 /* CacheManager.swift */,
 				1A2000010000000000000001 /* Assets.xcassets */,
 				1A2000020000000000000001 /* AppIcon.icns */,
 				1A1000090000000000000001 /* Info.plist */,
@@ -156,6 +168,10 @@
 				1A0000060000000000000001 /* ImageProvider.swift in Sources */,
 				1A0000070000000000000001 /* HistoryStore.swift in Sources */,
 				1A0000080000000000000001 /* IconGenerator.swift in Sources */,
+				1AC2F0010000000000000001 /* StatusItemManager.swift in Sources */,
+				1AC2F0020000000000000001 /* LaunchAtLogin.swift in Sources */,
+				1AC2F0030000000000000001 /* ImagesDirectory.swift in Sources */,
+				1AC2F0040000000000000001 /* CacheManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,4 +264,3 @@
 	};
 	rootObject = 1A0000000000000000000001 /* Project object */;
 }
-

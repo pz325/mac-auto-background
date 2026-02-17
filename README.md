@@ -46,6 +46,13 @@ Auto-change macOS desktop wallpaper on a schedule and on wake. Supports multiple
 - From terminal:
   - `swift run`
 
+#### Open with Xcode via terminal
+Use this command to open the package directly in Xcode for debugging/testing:
+
+```bash
+open -a Xcode Package.swift
+```
+
 Note: On some restricted environments, `swift build` may require Xcode toolchain/SDK permissions. Running via Xcode is the smoothest path.
 
 ## App Icon

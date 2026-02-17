@@ -20,16 +20,8 @@ final class PicsumProvider: ImageProvider {
         throw NSError(domain: "ImageProvider", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to fetch unique image"])
     }
     
-    private func imagesDirectory() throws -> URL {
-        let fm = FileManager.default
-        let base = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        let dir = base.appendingPathComponent("MacAutoBackground/Images", isDirectory: true)
-        try fm.createDirectory(at: dir, withIntermediateDirectories: true)
-        return dir
-    }
-    
     private func saveImage(data: Data, suffix: String) throws -> URL {
-        let dir = try imagesDirectory()
+        let dir = try ImagesDirectory.url()
         let ts = Int(Date().timeIntervalSince1970)
         let name = "img-\(ts)-\(UUID().uuidString).\(suffix)"
         let file = dir.appendingPathComponent(name)

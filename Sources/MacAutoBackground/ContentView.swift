@@ -16,8 +16,19 @@ struct ContentView: View {
                 }
                 .labelsHidden()
             }
+            HStack {
+                Text("图片缓存上限(MB)")
+                Spacer()
+                Stepper(value: $settings.cacheMaxMB, in: 64...4096, step: 64) {
+                    Text("\(settings.cacheMaxMB)")
+                        .frame(width: 60, alignment: .trailing)
+                }
+                .labelsHidden()
+            }
             Toggle("睡眠/合盖唤醒后更换", isOn: $settings.changeOnWake)
             Toggle("避免重复图片", isOn: $settings.avoidDuplicates)
+            Toggle("登录时自动启动", isOn: $settings.launchAtLogin)
+            Toggle("显示菜单栏图标", isOn: $settings.showMenuBarIcon)
             Picker("图片来源", selection: $settings.provider) {
                 ForEach(ProviderType.allCases) { p in
                     Text(label(for: p)).tag(p)

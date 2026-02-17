@@ -45,5 +45,30 @@ enum IconGenerator {
         img.isTemplate = false
         return img
     }
+    
+    static func makeStatusIcon(size: CGFloat = 18) -> NSImage {
+        let img = NSImage(size: NSSize(width: size, height: size))
+        img.lockFocus()
+        let rect = NSRect(x: 0, y: 0, width: size, height: size)
+        NSColor.clear.setFill()
+        NSBezierPath(rect: rect).fill()
+        NSColor.black.setFill()
+        let baseY = size * 0.25
+        let path = NSBezierPath()
+        path.move(to: NSPoint(x: size * 0.1, y: baseY))
+        path.line(to: NSPoint(x: size * 0.4, y: baseY + size * 0.35))
+        path.line(to: NSPoint(x: size * 0.55, y: baseY + size * 0.2))
+        path.line(to: NSPoint(x: size * 0.8, y: baseY))
+        path.line(to: NSPoint(x: size * 0.9, y: baseY))
+        path.line(to: NSPoint(x: size * 0.9, y: size * 0.1))
+        path.line(to: NSPoint(x: size * 0.1, y: size * 0.1))
+        path.close()
+        path.fill()
+        let sunR = size * 0.12
+        let sun = NSRect(x: size * 0.6, y: size * 0.6, width: sunR, height: sunR)
+        NSBezierPath(ovalIn: sun).fill()
+        img.unlockFocus()
+        img.isTemplate = true
+        return img
+    }
 }
-

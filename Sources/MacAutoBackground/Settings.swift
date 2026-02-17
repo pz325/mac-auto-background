@@ -17,6 +17,15 @@ final class AppSettings: ObservableObject {
     @Published var maxHistory: Int {
         didSet { UserDefaults.standard.set(maxHistory, forKey: "maxHistory") }
     }
+    @Published var launchAtLogin: Bool {
+        didSet { UserDefaults.standard.set(launchAtLogin, forKey: "launchAtLogin") }
+    }
+    @Published var showMenuBarIcon: Bool {
+        didSet { UserDefaults.standard.set(showMenuBarIcon, forKey: "showMenuBarIcon") }
+    }
+    @Published var cacheMaxMB: Int {
+        didSet { UserDefaults.standard.set(cacheMaxMB, forKey: "cacheMaxMB") }
+    }
     
     init() {
         let d = UserDefaults.standard
@@ -27,6 +36,9 @@ final class AppSettings: ObservableObject {
         provider = p
         avoidDuplicates = d.object(forKey: "avoidDuplicates") as? Bool ?? true
         maxHistory = d.object(forKey: "maxHistory") as? Int ?? 300
+        launchAtLogin = d.object(forKey: "launchAtLogin") as? Bool ?? false
+        showMenuBarIcon = d.object(forKey: "showMenuBarIcon") as? Bool ?? true
+        cacheMaxMB = d.object(forKey: "cacheMaxMB") as? Int ?? 512
     }
 }
 
@@ -35,4 +47,3 @@ enum ProviderType: String, CaseIterable, Identifiable {
     
     var id: String { rawValue }
 }
-

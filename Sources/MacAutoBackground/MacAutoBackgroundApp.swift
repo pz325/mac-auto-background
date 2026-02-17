@@ -5,6 +5,7 @@ import AppKit
 struct MacAutoBackgroundApp: App {
     @StateObject private var settings = AppSettings()
     @StateObject private var engine = Engine()
+    @StateObject private var statusItem = StatusItemManager()
     
     init() {
         NSApplication.shared.setActivationPolicy(.regular)
@@ -22,6 +23,20 @@ struct MacAutoBackgroundApp: App {
                     engine.start()
                     Task { @MainActor in
                         engine.refreshCurrentWallpaper()
+                        statusItem.configure(settings: settings, engine: engine)
+                        statusItem.updateVisibility()
+                    }
+                }
+                .onChange(of: settings.showMenuBarIcon) { _ in
+                    statusItem.updateVisibility()
+                }
+                .onChange(of: settings.launchAtLogin) { newValue in
+                    Task {
+                        do {
+                            try await LaunchAtLogin.setEnabled(newValue)
+                        } catch {
+                            await MainActor.run { settings.launchAtLogin = false }
+                        }
                     }
                 }
         }

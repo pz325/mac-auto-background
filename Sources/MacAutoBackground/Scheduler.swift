@@ -31,6 +31,11 @@ final class Engine: ObservableObject {
         Task { @MainActor in
             refreshCurrentWallpaper()
         }
+        Task.detached {
+            let maxMB = UserDefaults.standard.object(forKey: "cacheMaxMB") as? Int ?? 512
+            let maxBytes = Int64(maxMB * 1024 * 1024)
+            CacheManager.cleanupImagesIfNeeded(maxBytes: maxBytes, excluding: nil)
+        }
         let nc = NSWorkspace.shared.notificationCenter
         nc.addObserver(self, selector: #selector(handleWake), name: NSWorkspace.didWakeNotification, object: nil)
         nc.addObserver(self, selector: #selector(handleScreenWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
@@ -80,6 +85,8 @@ final class Engine: ObservableObject {
             currentImageURL = item.fileURL
             lastError = nil
             lastChange = Date()
+            let maxBytes = Int64((settings.cacheMaxMB as Int) * 1024 * 1024)
+            CacheManager.cleanupImagesIfNeeded(maxBytes: maxBytes, excluding: currentImageURL)
         } catch {
             lastError = error.localizedDescription
         }

@@ -92,6 +92,14 @@ struct ContentView: View {
                     Task { await engine.changeNow() }
                 }
             }
+            HStack(spacing: 12) {
+                Button("打开缓存目录") {
+                    openCacheDirectory()
+                }
+                Button("清除缓存") {
+                    clearCache()
+                }
+            }
             if let date = engine.lastChange {
                 Text("上次更换时间：\(date.formatted(date: .abbreviated, time: .standard))")
                     .foregroundStyle(.secondary)
@@ -146,6 +154,42 @@ struct ContentView: View {
         case .bing: return "Bing 每日壁纸"
         case .picsum: return "Picsum 随机高清图"
         case .unsplash: return "Unsplash 随机图"
+        }
+    }
+    
+    private func openCacheDirectory() {
+        do {
+            let cacheURL = try ImagesDirectory.url()
+            NSWorkspace.shared.open(cacheURL)
+        } catch {
+            print("无法打开缓存目录：\(error.localizedDescription)")
+        }
+    }
+    
+    private func clearCache() {
+        let alert = NSAlert()
+        alert.messageText = "确认清除缓存"
+        alert.informativeText = "确定要清除所有本地图片缓存吗？此操作不可撤销。"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "取消")
+        alert.addButton(withTitle: "清除")
+        
+        let response = alert.runModal()
+        
+        if response == .alertSecondButtonReturn {
+            do {
+                let cacheURL = try ImagesDirectory.url()
+                let fileManager = FileManager.default
+                let files = try fileManager.contentsOfDirectory(at: cacheURL, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+                
+                for file in files {
+                    try fileManager.removeItem(at: file)
+                }
+                
+                print("已清除 \(files.count) 个缓存文件")
+            } catch {
+                print("清除缓存失败：\(error.localizedDescription)")
+            }
         }
     }
 }

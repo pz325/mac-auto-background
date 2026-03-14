@@ -24,8 +24,31 @@ mkdir -p "$DIST_DIR"
 ZIP_PATH="$DIST_DIR/MacAutoBackground_v${VERSION}.zip"
 DMG_PATH="$DIST_DIR/MacAutoBackground_v${VERSION}.dmg"
 rm -f "$ZIP_PATH" "$DMG_PATH"
+
+# Create ZIP
 cd "$(dirname "$APP_PATH")"
 zip -yr "$ZIP_PATH" "MacAutoBackground.app"
-hdiutil create -volname "MacAutoBackground v${VERSION}" -srcfolder "MacAutoBackground.app" -ov -format UDZO "$DMG_PATH"
+
+# Create DMG with drag-and-drop installation
+TEMP_DMG="$ROOT_DIR/build/temp_mac_auto_background.dmg"
+VOLUME_NAME="MacAutoBackground v${VERSION}"
+
+# Create temporary directory for DMG contents
+temp_dir="$(mktemp -d)"
+
+trap "rm -rf \"$temp_dir\" \"$TEMP_DMG\"" EXIT
+
+# Copy app to temp directory
+cp -R "MacAutoBackground.app" "$temp_dir/"
+
+# Create Applications symlink
+ln -s "/Applications" "$temp_dir/Applications"
+
+# Create DMG
+hdiutil create -volname "$VOLUME_NAME" -srcfolder "$temp_dir" -ov -format UDZO "$TEMP_DMG"
+
+# Convert to read-only DMG
+hdiutil convert "$TEMP_DMG" -format UDZO -o "$DMG_PATH"
+
 echo "$ZIP_PATH"
 echo "$DMG_PATH"

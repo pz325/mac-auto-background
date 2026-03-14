@@ -6,24 +6,58 @@ struct ContentView: View {
     @EnvironmentObject var engine: Engine
     private let favStore = RecentFavoritesStore()
     @State private var isFavorite: Bool = false
+    @State private var intervalInput: String = ""
+    @State private var cacheInput: String = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Text("自动更换间隔(分钟)")
                 Spacer()
-                Stepper(value: $settings.intervalMinutes, in: 1...1440, step: 1) {
-                    Text("\(settings.intervalMinutes)")
-                        .frame(width: 60, alignment: .trailing)
-                }
+                TextField("60", text: $intervalInput)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 100, alignment: .center)
+                    .onAppear {
+                        intervalInput = String(settings.intervalMinutes)
+                    }
+                    .onChange(of: intervalInput) { newValue in
+                        let filtered = newValue.filter { $0.isNumber }
+                        if filtered != newValue {
+                            intervalInput = filtered
+                        }
+                        if let value = Int(filtered), value > 0 {
+                            settings.intervalMinutes = value
+                        }
+                    }
+                    .onChange(of: settings.intervalMinutes) { newValue in
+                        if String(newValue) != intervalInput {
+                            intervalInput = String(newValue)
+                        }
+                    }
             }
             HStack {
                 Text("图片缓存上限(MB)")
                 Spacer()
-                Stepper(value: $settings.cacheMaxMB, in: 64...4096, step: 64) {
-                    Text("\(settings.cacheMaxMB)")
-                        .frame(width: 60, alignment: .trailing)
-                }
+                TextField("512", text: $cacheInput)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 100, alignment: .center)
+                    .onAppear {
+                        cacheInput = String(settings.cacheMaxMB)
+                    }
+                    .onChange(of: cacheInput) { newValue in
+                        let filtered = newValue.filter { $0.isNumber }
+                        if filtered != newValue {
+                            cacheInput = filtered
+                        }
+                        if let value = Int(filtered), value > 0 {
+                            settings.cacheMaxMB = value
+                        }
+                    }
+                    .onChange(of: settings.cacheMaxMB) { newValue in
+                        if String(newValue) != cacheInput {
+                            cacheInput = String(newValue)
+                        }
+                    }
             }
             Toggle("睡眠/合盖唤醒后更换", isOn: $settings.changeOnWake)
             Toggle("避免重复图片", isOn: $settings.avoidDuplicates)

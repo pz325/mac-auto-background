@@ -1,7 +1,28 @@
 import SwiftUI
 import AppKit
 
+class WindowDelegate: NSObject, NSWindowDelegate {
+    private let targetSize: NSSize
+    
+    init(targetSize: NSSize) {
+        self.targetSize = targetSize
+        super.init()
+    }
+    
+    func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+        return targetSize
+    }
+    
+    func windowDidResize(_ notification: Notification) {
+        if let window = notification.object as? NSWindow {
+            window.setContentSize(targetSize)
+        }
+    }
+}
+
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    private var windowDelegate: WindowDelegate?
+    
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if !flag {
             for win in sender.windows {
@@ -10,6 +31,38 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         sender.activate(ignoringOtherApps: true)
         return true
+    }
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if let win = NSApplication.shared.windows.first {
+                self.configureWindow(win)
+            }
+        }
+    }
+    
+    func application(_ application: NSApplication, didCreateWindow window: NSWindow) {
+        configureWindow(window)
+    }
+    
+    private func configureWindow(_ window: NSWindow) {
+        let size = NSSize(width: 760, height: 620)
+        window.setContentSize(size)
+        window.center()
+        window.styleMask = [.titled, .closable, .miniaturizable]
+        window.styleMask.remove(.resizable)
+        window.minSize = size
+        window.maxSize = size
+        window.collectionBehavior = .fullScreenNone
+        window.isMovableByWindowBackground = true
+        
+        let delegate = WindowDelegate(targetSize: size)
+        window.delegate = delegate
+        windowDelegate = delegate
+        
+        if let button = window.standardWindowButton(.zoomButton) {
+            button.isEnabled = false
+        }
     }
 }
 
@@ -30,14 +83,12 @@ struct MacAutoBackgroundApp: App {
             ContentView()
                 .environmentObject(settings)
                 .environmentObject(engine)
+                .frame(width: 760, height: 620)
+                .fixedSize()
                 .onAppear {
                     engine.configure(with: settings)
                     engine.start()
                     Task { @MainActor in
-                        if let win = NSApp.windows.first {
-                            win.setContentSize(NSSize(width: 760, height: 620))
-                            win.center()
-                        }
                         engine.refreshCurrentWallpaper()
                         statusItem.configure(settings: settings, engine: engine)
                         statusItem.updateVisibility()

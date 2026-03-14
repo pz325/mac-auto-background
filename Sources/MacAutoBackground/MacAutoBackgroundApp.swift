@@ -22,15 +22,15 @@ class WindowDelegate: NSObject, NSWindowDelegate {
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var windowDelegate: WindowDelegate?
+    private var hasConfiguredWindow = false
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        if !flag {
-            for win in sender.windows {
-                win.makeKeyAndOrderFront(nil)
-            }
+        // Show existing window instead of creating new one
+        if let window = sender.windows.first {
+            window.makeKeyAndOrderFront(nil)
         }
         sender.activate(ignoringOtherApps: true)
-        return true
+        return false
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -42,6 +42,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func application(_ application: NSApplication, didCreateWindow window: NSWindow) {
+        // Only configure the first window, close any subsequent ones
+        if hasConfiguredWindow {
+            window.close()
+            // Bring the first window to front
+            if let firstWindow = application.windows.first, firstWindow != window {
+                firstWindow.makeKeyAndOrderFront(nil)
+            }
+            return
+        }
+        hasConfiguredWindow = true
         configureWindow(window)
     }
     

@@ -32,10 +32,13 @@ final class AppSettings: ObservableObject {
     @Published var unsplashQuery: String {
         didSet { UserDefaults.standard.set(unsplashQuery, forKey: "unsplashQuery") }
     }
+    @Published var language: Language {
+        didSet { UserDefaults.standard.set(language.rawValue, forKey: "language") }
+    }
     
     init() {
         let d = UserDefaults.standard
-        let defaultInterval = 60
+        let defaultInterval = 240
         intervalMinutes = d.object(forKey: "intervalMinutes") as? Int ?? defaultInterval
         changeOnWake = d.object(forKey: "changeOnWake") as? Bool ?? true
         let p = d.string(forKey: "provider").flatMap { ProviderType(rawValue: $0) } ?? .auto
@@ -44,9 +47,13 @@ final class AppSettings: ObservableObject {
         maxHistory = d.object(forKey: "maxHistory") as? Int ?? 300
         launchAtLogin = d.object(forKey: "launchAtLogin") as? Bool ?? false
         showMenuBarIcon = d.object(forKey: "showMenuBarIcon") as? Bool ?? true
-        cacheMaxMB = d.object(forKey: "cacheMaxMB") as? Int ?? 512
+        cacheMaxMB = d.object(forKey: "cacheMaxMB") as? Int ?? 128
         unsplashAccessKey = d.string(forKey: "unsplashAccessKey") ?? ""
         unsplashQuery = d.string(forKey: "unsplashQuery") ?? ""
+        let savedLang = d.string(forKey: "language").flatMap { Language(rawValue: $0) }
+        let systemLang = Locale.current.identifier.prefix(2).lowercased()
+        let defaultLang = systemLang.hasPrefix("zh") ? Language.chinese : Language.english
+        language = savedLang ?? defaultLang
     }
 }
 
@@ -55,6 +62,13 @@ enum ProviderType: String, CaseIterable, Identifiable {
     case bing
     case picsum
     case unsplash
+    
+    var id: String { rawValue }
+}
+
+enum Language: String, CaseIterable, Identifiable {
+    case chinese
+    case english
     
     var id: String { rawValue }
 }

@@ -11,10 +11,15 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
+            Picker(LocalizedStrings.text(for: "language", language: settings.language), selection: $settings.language) {
+                ForEach(Language.allCases) { lang in
+                    Text(languageLabel(for: lang)).tag(lang)
+                }
+            }
             HStack {
-                Text("自动更换间隔(分钟)")
+                Text(LocalizedStrings.text(for: "autoChangeInterval", language: settings.language))
                 Spacer()
-                TextField("60", text: $intervalInput)
+                TextField("240", text: $intervalInput)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 100, alignment: .center)
                     .onAppear {
@@ -36,9 +41,9 @@ struct ContentView: View {
                     }
             }
             HStack {
-                Text("图片缓存上限(MB)")
+                Text(LocalizedStrings.text(for: "cacheLimit", language: settings.language))
                 Spacer()
-                TextField("512", text: $cacheInput)
+                TextField("128", text: $cacheInput)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 100, alignment: .center)
                     .onAppear {
@@ -59,61 +64,61 @@ struct ContentView: View {
                         }
                     }
             }
-            Toggle("睡眠/合盖唤醒后更换", isOn: $settings.changeOnWake)
-            Toggle("避免重复图片", isOn: $settings.avoidDuplicates)
-            Toggle("登录时自动启动", isOn: $settings.launchAtLogin)
-            Toggle("显示菜单栏图标", isOn: $settings.showMenuBarIcon)
-            Picker("图片来源", selection: $settings.provider) {
+            Toggle(LocalizedStrings.text(for: "changeOnWake", language: settings.language), isOn: $settings.changeOnWake)
+            Toggle(LocalizedStrings.text(for: "avoidDuplicates", language: settings.language), isOn: $settings.avoidDuplicates)
+            Toggle(LocalizedStrings.text(for: "launchAtLogin", language: settings.language), isOn: $settings.launchAtLogin)
+            Toggle(LocalizedStrings.text(for: "showMenuBarIcon", language: settings.language), isOn: $settings.showMenuBarIcon)
+            Picker(LocalizedStrings.text(for: "imageSource", language: settings.language), selection: $settings.provider) {
                 ForEach(ProviderType.allCases) { p in
                     Text(label(for: p)).tag(p)
                 }
             }
             if settings.provider == .unsplash || settings.provider == .auto {
                 HStack {
-                    Text("Unsplash Access Key")
+                    Text(LocalizedStrings.text(for: "unsplashAccessKey", language: settings.language))
                     Spacer()
-                    TextField("可选", text: $settings.unsplashAccessKey)
+                    TextField(LocalizedStrings.text(for: "optional", language: settings.language), text: $settings.unsplashAccessKey)
                         .textFieldStyle(.roundedBorder)
                         .frame(width: 360)
                 }
                 HStack {
-                    Text("关键词")
+                    Text(LocalizedStrings.text(for: "keywords", language: settings.language))
                     Spacer()
-                    TextField("例如: nature, city", text: $settings.unsplashQuery)
+                    TextField(LocalizedStrings.text(for: "keywordsPlaceholder", language: settings.language), text: $settings.unsplashQuery)
                         .textFieldStyle(.roundedBorder)
                         .frame(width: 360)
                 }
             }
             HStack(spacing: 12) {
-                Button("立即更换") {
+                Button(LocalizedStrings.text(for: "changeNow", language: settings.language)) {
                     Task { await engine.changeNow() }
                 }
-                Button("测试获取图片") {
+                Button(LocalizedStrings.text(for: "testFetch", language: settings.language)) {
                     Task { await engine.changeNow() }
                 }
             }
             HStack(spacing: 12) {
-                Button("打开缓存目录") {
+                Button(LocalizedStrings.text(for: "openCacheDir", language: settings.language)) {
                     openCacheDirectory()
                 }
-                Button("清除缓存") {
+                Button(LocalizedStrings.text(for: "clearCache", language: settings.language)) {
                     clearCache()
                 }
             }
             if let date = engine.lastChange {
-                Text("上次更换时间：\(date.formatted(date: .abbreviated, time: .standard))")
+                Text(LocalizedStrings.text(for: "lastChangeTime", language: settings.language) + "\(date.formatted(date: .abbreviated, time: .standard))")
                     .foregroundStyle(.secondary)
             }
             if let err = engine.lastError {
-                Text("错误：\(err)").foregroundStyle(.red)
+                Text(LocalizedStrings.text(for: "error", language: settings.language) + "\(err)").foregroundStyle(.red)
             }
             if let url = engine.currentImageURL, let img = NSImage(contentsOf: url) {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
-                        Text("当前桌面预览")
+                        Text(LocalizedStrings.text(for: "currentPreview", language: settings.language))
                             .font(.headline)
                         Spacer()
-                        Button(isFavorite ? "取消收藏" : "收藏当前") {
+                        Button(isFavorite ? LocalizedStrings.text(for: "unfavorite", language: settings.language) : LocalizedStrings.text(for: "favorite", language: settings.language)) {
                             favStore.toggleFavorite(url)
                             isFavorite.toggle()
                         }
@@ -134,7 +139,7 @@ struct ContentView: View {
                         .truncationMode(.middle)
                 }
             } else {
-                Text("当前桌面预览不可用").foregroundStyle(.secondary)
+                Text(LocalizedStrings.text(for: "previewUnavailable", language: settings.language)).foregroundStyle(.secondary)
             }
             Spacer()
         }
@@ -150,10 +155,17 @@ struct ContentView: View {
     
     private func label(for p: ProviderType) -> String {
         switch p {
-        case .auto: return "自动选择（优先中国大陆可访问源）"
-        case .bing: return "Bing 每日壁纸"
-        case .picsum: return "Picsum 随机高清图"
-        case .unsplash: return "Unsplash 随机图"
+        case .auto: return LocalizedStrings.text(for: "autoSource", language: settings.language)
+        case .bing: return LocalizedStrings.text(for: "bingSource", language: settings.language)
+        case .picsum: return LocalizedStrings.text(for: "picsumSource", language: settings.language)
+        case .unsplash: return LocalizedStrings.text(for: "unsplashSource", language: settings.language)
+        }
+    }
+    
+    private func languageLabel(for lang: Language) -> String {
+        switch lang {
+        case .chinese: return "中文"
+        case .english: return "English"
         }
     }
     
@@ -168,11 +180,11 @@ struct ContentView: View {
     
     private func clearCache() {
         let alert = NSAlert()
-        alert.messageText = "确认清除缓存"
-        alert.informativeText = "确定要清除所有本地图片缓存吗？此操作不可撤销。"
+        alert.messageText = LocalizedStrings.text(for: "confirmClearCache", language: settings.language)
+        alert.informativeText = LocalizedStrings.text(for: "confirmClearCacheMessage", language: settings.language)
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "取消")
-        alert.addButton(withTitle: "清除")
+        alert.addButton(withTitle: LocalizedStrings.text(for: "cancel", language: settings.language))
+        alert.addButton(withTitle: LocalizedStrings.text(for: "clear", language: settings.language))
         
         let response = alert.runModal()
         

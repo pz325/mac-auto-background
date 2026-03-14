@@ -1,3 +1,4 @@
+import Foundation
 import AppKit
 import Combine
 
@@ -36,9 +37,9 @@ final class Engine: ObservableObject {
         Task.detached { [weak self] in
             await self?.prefetchNext()
         }
-        Task.detached {
-            let maxMB = UserDefaults.standard.object(forKey: "cacheMaxMB") as? Int ?? 512
-            let maxBytes = Int64(maxMB * 1024 * 1024)
+        Task.detached { [weak self] in
+            guard let self = self, let settings = self.settings else { return }
+            let maxBytes = Int64(settings.cacheMaxMB * 1024 * 1024)
             CacheManager.cleanupImagesIfNeeded(maxBytes: maxBytes, excluding: nil)
         }
         let nc = NSWorkspace.shared.notificationCenter

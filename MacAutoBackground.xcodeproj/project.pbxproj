@@ -21,7 +21,8 @@
 		1AC2F0020000000000000001 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0020000000000000001 /* LaunchAtLogin.swift */; };
 		1AC2F0030000000000000001 /* ImagesDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0030000000000000001 /* ImagesDirectory.swift */; };
 		1AC2F0040000000000000001 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0040000000000000001 /* CacheManager.swift */; };
-		1AC2F0050000000000000001 /* RecentFavoritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0050000000000000001 /* RecentFavoritesStore.swift */; };
+	1AC2F0050000000000000001 /* RecentFavoritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0050000000000000001 /* RecentFavoritesStore.swift */; };
+	1AC2F0060000000000000001 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F0060000000000000001 /* LocalizedStrings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,8 @@
 		1AC1F0020000000000000001 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LaunchAtLogin.swift; path = Sources/MacAutoBackground/LaunchAtLogin.swift; sourceTree = "<group>"; };
 		1AC1F0030000000000000001 /* ImagesDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImagesDirectory.swift; path = Sources/MacAutoBackground/ImagesDirectory.swift; sourceTree = "<group>"; };
 		1AC1F0040000000000000001 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CacheManager.swift; path = Sources/MacAutoBackground/CacheManager.swift; sourceTree = "<group>"; };
-		1AC1F0050000000000000001 /* RecentFavoritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecentFavoritesStore.swift; path = Sources/MacAutoBackground/RecentFavoritesStore.swift; sourceTree = "<group>"; };
+	1AC1F0050000000000000001 /* RecentFavoritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecentFavoritesStore.swift; path = Sources/MacAutoBackground/RecentFavoritesStore.swift; sourceTree = "<group>"; };
+	1AC1F0060000000000000001 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalizedStrings.swift; path = Sources/MacAutoBackground/LocalizedStrings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				1AC2F0030000000000000001 /* ImagesDirectory.swift in Sources */,
 				1AC2F0040000000000000001 /* CacheManager.swift in Sources */,
 				1AC2F0050000000000000001 /* RecentFavoritesStore.swift in Sources */,
+				1AC2F0060000000000000001 /* LocalizedStrings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

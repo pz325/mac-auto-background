@@ -42,7 +42,17 @@ enum LocalizedStrings {
         "clear": "清除",
         "language": "语言",
         "chinese": "中文",
-        "english": "English"
+        "english": "English",
+        "openWindow": "打开窗口",
+        "favoriteCurrent": "收藏当前",
+        "unfavoriteCurrent": "取消收藏当前",
+        "recent": "最近",
+        "favorites": "收藏",
+        "launchAtLoginEnabled": "登录时自动启动 ✓",
+        "launchAtLoginDisabled": "登录时自动启动",
+        "showMenuBarIconEnabled": "显示菜单栏图标 ✓",
+        "showMenuBarIconDisabled": "显示菜单栏图标",
+        "quit": "退出"
     ]
     
     private static let englishText: [String: String] = [
@@ -77,6 +87,16 @@ enum LocalizedStrings {
         "clear": "Clear",
         "language": "Language",
         "chinese": "中文",
-        "english": "English"
+        "english": "English",
+        "openWindow": "Open Window",
+        "favoriteCurrent": "Favorite Current",
+        "unfavoriteCurrent": "Unfavorite Current",
+        "recent": "Recent",
+        "favorites": "Favorites",
+        "launchAtLoginEnabled": "Launch at Login ✓",
+        "launchAtLoginDisabled": "Launch at Login",
+        "showMenuBarIconEnabled": "Show Menu Bar Icon ✓",
+        "showMenuBarIconDisabled": "Show Menu Bar Icon",
+        "quit": "Quit"
     ]
 }

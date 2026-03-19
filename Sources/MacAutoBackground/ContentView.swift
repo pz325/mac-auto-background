@@ -144,7 +144,7 @@ struct ContentView: View {
             Spacer()
         }
         .padding(20)
-        .frame(minWidth: 740, minHeight: 600)
+        .frame(minWidth: 740, minHeight: 700)
         .onAppear {
             isFavorite = favStore.isFavorite(engine.currentImageURL)
         }

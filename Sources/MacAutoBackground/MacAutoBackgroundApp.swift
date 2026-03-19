@@ -1,27 +1,7 @@
 import SwiftUI
 import AppKit
 
-class WindowDelegate: NSObject, NSWindowDelegate {
-    private let targetSize: NSSize
-    
-    init(targetSize: NSSize) {
-        self.targetSize = targetSize
-        super.init()
-    }
-    
-    func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-        return targetSize
-    }
-    
-    func windowDidResize(_ notification: Notification) {
-        if let window = notification.object as? NSWindow {
-            window.setContentSize(targetSize)
-        }
-    }
-}
-
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    private var windowDelegate: WindowDelegate?
     private var hasConfiguredWindow = false
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -59,19 +39,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let size = NSSize(width: 760, height: 620)
         window.setContentSize(size)
         window.center()
-        window.styleMask = [.titled, .closable, .miniaturizable]
-        window.styleMask.remove(.resizable)
-        window.minSize = size
-        window.maxSize = size
-        window.collectionBehavior = .fullScreenNone
+        window.styleMask = [.titled, .closable, .miniaturizable, .resizable]
         window.isMovableByWindowBackground = true
         
-        let delegate = WindowDelegate(targetSize: size)
-        window.delegate = delegate
-        windowDelegate = delegate
-        
         if let button = window.standardWindowButton(.zoomButton) {
-            button.isEnabled = false
+            button.isEnabled = true
         }
     }
 }
@@ -94,7 +66,6 @@ struct MacAutoBackgroundApp: App {
                 .environmentObject(settings)
                 .environmentObject(engine)
                 .frame(width: 760, height: 620)
-                .fixedSize()
                 .onAppear {
                     engine.configure(with: settings)
                     engine.start()

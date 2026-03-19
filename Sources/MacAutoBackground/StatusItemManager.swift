@@ -1,4 +1,5 @@
 import AppKit
+import Combine
 
 @MainActor
 final class StatusItemManager: ObservableObject {
@@ -10,8 +11,20 @@ final class StatusItemManager: ObservableObject {
     func configure(settings: AppSettings, engine: Engine) {
         self.settings = settings
         self.engine = engine
+        
+        // Listen for language changes
+        settings.$language
+            .sink { newLanguage in
+                DispatchQueue.main.async {
+                    self.rebuildMenu(with: newLanguage)
+                }
+            }
+            .store(in: &cancellables)
+        
         updateVisibility()
     }
+    
+    private var cancellables = Set<AnyCancellable>()
     
     func updateVisibility() {
         guard let settings else { return }
@@ -40,60 +53,61 @@ final class StatusItemManager: ObservableObject {
         }
     }
     
-    private func rebuildMenu() {
+    private func rebuildMenu(with language: Language? = nil) {
         guard let settings, let engine else { return }
+        let currentLanguage = language ?? settings.language
         let menu = NSMenu()
         
-        let openItem = NSMenuItem(title: "打开窗口", action: #selector(openWindow), keyEquivalent: "")
+        let openItem = NSMenuItem(title: LocalizedStrings.text(for: "openWindow", language: currentLanguage), action: #selector(openWindow), keyEquivalent: "")
         openItem.target = self
         menu.addItem(openItem)
         
-        let changeItem = NSMenuItem(title: "立即更换", action: #selector(changeNow), keyEquivalent: "")
+        let changeItem = NSMenuItem(title: LocalizedStrings.text(for: "changeNow", language: currentLanguage), action: #selector(changeNow), keyEquivalent: "")
         changeItem.target = self
         menu.addItem(changeItem)
         
-        let favTitle = store.isFavorite(engine.currentImageURL) ? "取消收藏当前" : "收藏当前"
+        let favTitle = store.isFavorite(engine.currentImageURL) ? LocalizedStrings.text(for: "unfavoriteCurrent", language: currentLanguage) : LocalizedStrings.text(for: "favoriteCurrent", language: currentLanguage)
         let favItem = NSMenuItem(title: favTitle, action: #selector(toggleFavoriteCurrent), keyEquivalent: "")
         favItem.target = self
         menu.addItem(favItem)
         
-        let recentSub = NSMenu(title: "最近")
+        let recentSub = NSMenu(title: LocalizedStrings.text(for: "recent", language: currentLanguage))
         for url in Array(store.recent().prefix(5)) {
             let it = NSMenuItem(title: url.lastPathComponent, action: #selector(setFromMenu(_:)), keyEquivalent: "")
             it.representedObject = url.path
             it.target = self
             recentSub.addItem(it)
         }
-        let recentRoot = NSMenuItem(title: "最近", action: nil, keyEquivalent: "")
+        let recentRoot = NSMenuItem(title: LocalizedStrings.text(for: "recent", language: currentLanguage), action: nil, keyEquivalent: "")
         menu.setSubmenu(recentSub, for: recentRoot)
         menu.addItem(recentRoot)
         
-        let favSub = NSMenu(title: "收藏")
+        let favSub = NSMenu(title: LocalizedStrings.text(for: "favorites", language: currentLanguage))
         for url in store.favorites().prefix(10) {
             let it = NSMenuItem(title: url.lastPathComponent, action: #selector(setFromMenu(_:)), keyEquivalent: "")
             it.representedObject = url.path
             it.target = self
             favSub.addItem(it)
         }
-        let favRoot = NSMenuItem(title: "收藏", action: nil, keyEquivalent: "")
+        let favRoot = NSMenuItem(title: LocalizedStrings.text(for: "favorites", language: currentLanguage), action: nil, keyEquivalent: "")
         menu.setSubmenu(favSub, for: favRoot)
         menu.addItem(favRoot)
         
         menu.addItem(.separator())
         
-        let loginTitle = settings.launchAtLogin ? "登录时自动启动 ✓" : "登录时自动启动"
+        let loginTitle = settings.launchAtLogin ? LocalizedStrings.text(for: "launchAtLoginEnabled", language: currentLanguage) : LocalizedStrings.text(for: "launchAtLoginDisabled", language: currentLanguage)
         let loginItem = NSMenuItem(title: loginTitle, action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
         loginItem.target = self
         menu.addItem(loginItem)
         
-        let barTitle = settings.showMenuBarIcon ? "显示菜单栏图标 ✓" : "显示菜单栏图标"
+        let barTitle = settings.showMenuBarIcon ? LocalizedStrings.text(for: "showMenuBarIconEnabled", language: currentLanguage) : LocalizedStrings.text(for: "showMenuBarIconDisabled", language: currentLanguage)
         let barItem = NSMenuItem(title: barTitle, action: #selector(toggleMenuBar), keyEquivalent: "")
         barItem.target = self
         menu.addItem(barItem)
         
         menu.addItem(.separator())
         
-        let quitItem = NSMenuItem(title: "退出", action: #selector(quitApp), keyEquivalent: "q")
+        let quitItem = NSMenuItem(title: LocalizedStrings.text(for: "quit", language: currentLanguage), action: #selector(quitApp), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
         

@@ -52,7 +52,28 @@ enum LocalizedStrings {
         "launchAtLoginDisabled": "登录时自动启动",
         "showMenuBarIconEnabled": "显示菜单栏图标 ✓",
         "showMenuBarIconDisabled": "显示菜单栏图标",
-        "quit": "退出"
+        "quit": "退出",
+        "workspaceBadge": "桌面工作台",
+        "statusReady": "已准备好",
+        "statusSetup": "等待设置",
+        "heroTitle": "用更温和、更专注的方式管理自动壁纸。",
+        "heroSubtitle": "保留现有全部功能，把来源、自动化、缓存和系统偏好整理成更清晰的工作区。",
+        "minutesUnitShort": "分钟",
+        "megabytesUnitShort": "MB",
+        "waitingForFirstChange": "等待第一次更换",
+        "previewHint": "实时查看当前桌面图像，并可直接收藏或取消收藏。",
+        "currentFile": "当前文件",
+        "activitySection": "最近活动",
+        "activityDescription": "查看最近一次更换记录和当前错误状态。",
+        "librarySection": "缓存与资料库",
+        "libraryDescription": "打开本地缓存目录，或在需要时清除缓存图片。",
+        "automationSection": "自动化规则",
+        "automationDescription": "控制更换节奏、缓存限制，以及唤醒后的自动行为。",
+        "sourceSection": "图片来源",
+        "sourceDescription": "选择壁纸提供方，并在需要时补充 Unsplash 配置。",
+        "systemSection": "系统偏好",
+        "systemDescription": "管理语言、登录启动和菜单栏图标等桌面集成设置。",
+        "noRecentErrors": "最近没有错误"
     ]
     
     private static let englishText: [String: String] = [
@@ -97,6 +118,27 @@ enum LocalizedStrings {
         "launchAtLoginDisabled": "Launch at Login",
         "showMenuBarIconEnabled": "Show Menu Bar Icon ✓",
         "showMenuBarIconDisabled": "Show Menu Bar Icon",
-        "quit": "Quit"
+        "quit": "Quit",
+        "workspaceBadge": "Wallpaper Workspace",
+        "statusReady": "Ready",
+        "statusSetup": "Needs Setup",
+        "heroTitle": "Manage automatic wallpapers with a calmer, cleaner workspace.",
+        "heroSubtitle": "Keep every existing feature while reorganizing sources, automation, cache, and system preferences into a clearer UI.",
+        "minutesUnitShort": "min",
+        "megabytesUnitShort": "MB",
+        "waitingForFirstChange": "Waiting for first change",
+        "previewHint": "See the current desktop image at a glance and favorite it without leaving the window.",
+        "currentFile": "Current file",
+        "activitySection": "Recent Activity",
+        "activityDescription": "Track the latest wallpaper update and the current error state.",
+        "librarySection": "Cache & Library",
+        "libraryDescription": "Open the local cache directory or clear stored images when needed.",
+        "automationSection": "Automation Rules",
+        "automationDescription": "Control the change cadence, cache budget, and wake behavior.",
+        "sourceSection": "Image Source",
+        "sourceDescription": "Choose a wallpaper provider and add Unsplash settings when needed.",
+        "systemSection": "System Preferences",
+        "systemDescription": "Manage language, launch behavior, and menu bar integration.",
+        "noRecentErrors": "No recent errors"
     ]
 }

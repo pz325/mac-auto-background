@@ -1,6 +1,13 @@
 import SwiftUI
 import AppKit
 
+enum AppWindowMetrics {
+    static let minContentWidth: CGFloat = 920
+    static let minContentHeight: CGFloat = 780
+    static let defaultContentWidth: CGFloat = 960
+    static let defaultContentHeight: CGFloat = 820
+}
+
 final class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -21,8 +28,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func configureWindow(_ window: NSWindow) {
-        let size = NSSize(width: 760, height: 720)
-        window.setContentSize(size)
+        let minSize = NSSize(width: AppWindowMetrics.minContentWidth, height: AppWindowMetrics.minContentHeight)
+        let defaultSize = NSSize(width: AppWindowMetrics.defaultContentWidth, height: AppWindowMetrics.defaultContentHeight)
+        window.contentMinSize = minSize
+        if window.contentLayoutRect.width < minSize.width || window.contentLayoutRect.height < minSize.height {
+            window.setContentSize(defaultSize)
+        }
         window.center()
         window.styleMask = [.titled, .closable, .miniaturizable, .resizable]
         window.isMovableByWindowBackground = true
@@ -50,7 +61,12 @@ struct MacAutoBackgroundApp: App {
             ContentView()
                 .environmentObject(settings)
                 .environmentObject(engine)
-                .frame(width: 760, height: 720)
+                .frame(
+                    minWidth: AppWindowMetrics.minContentWidth,
+                    idealWidth: AppWindowMetrics.defaultContentWidth,
+                    minHeight: AppWindowMetrics.minContentHeight,
+                    idealHeight: AppWindowMetrics.defaultContentHeight
+                )
                 .onAppear {
                     engine.configure(with: settings)
                     engine.start()

@@ -6,7 +6,7 @@ final class StatusItemManager: ObservableObject {
     private var statusItem: NSStatusItem?
     private weak var settings: AppSettings?
     private weak var engine: Engine?
-    private let store = RecentFavoritesStore()
+    private let store = RecentStore()
     
     func configure(settings: AppSettings, engine: Engine) {
         self.settings = settings
@@ -66,11 +66,6 @@ final class StatusItemManager: ObservableObject {
         changeItem.target = self
         menu.addItem(changeItem)
         
-        let favTitle = store.isFavorite(engine.currentImageURL) ? LocalizedStrings.text(for: "unfavoriteCurrent", language: currentLanguage) : LocalizedStrings.text(for: "favoriteCurrent", language: currentLanguage)
-        let favItem = NSMenuItem(title: favTitle, action: #selector(toggleFavoriteCurrent), keyEquivalent: "")
-        favItem.target = self
-        menu.addItem(favItem)
-        
         let recentSub = NSMenu(title: LocalizedStrings.text(for: "recent", language: currentLanguage))
         for url in Array(store.recent().prefix(5)) {
             let it = NSMenuItem(title: url.lastPathComponent, action: #selector(setFromMenu(_:)), keyEquivalent: "")
@@ -81,17 +76,6 @@ final class StatusItemManager: ObservableObject {
         let recentRoot = NSMenuItem(title: LocalizedStrings.text(for: "recent", language: currentLanguage), action: nil, keyEquivalent: "")
         menu.setSubmenu(recentSub, for: recentRoot)
         menu.addItem(recentRoot)
-        
-        let favSub = NSMenu(title: LocalizedStrings.text(for: "favorites", language: currentLanguage))
-        for url in store.favorites().prefix(10) {
-            let it = NSMenuItem(title: url.lastPathComponent, action: #selector(setFromMenu(_:)), keyEquivalent: "")
-            it.representedObject = url.path
-            it.target = self
-            favSub.addItem(it)
-        }
-        let favRoot = NSMenuItem(title: LocalizedStrings.text(for: "favorites", language: currentLanguage), action: nil, keyEquivalent: "")
-        menu.setSubmenu(favSub, for: favRoot)
-        menu.addItem(favRoot)
         
         menu.addItem(.separator())
         
@@ -123,12 +107,6 @@ final class StatusItemManager: ObservableObject {
         Task { [weak self] in
             await self?.engine?.changeNow()
         }
-    }
-    
-    @objc private func toggleFavoriteCurrent() {
-        guard let url = engine?.currentImageURL else { return }
-        store.toggleFavorite(url)
-        rebuildMenu()
     }
     
     @objc private func setFromMenu(_ sender: NSMenuItem) {

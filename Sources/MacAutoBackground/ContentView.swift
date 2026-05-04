@@ -4,8 +4,6 @@ import AppKit
 struct ContentView: View {
     @EnvironmentObject var settings: AppSettings
     @EnvironmentObject var engine: Engine
-    private let favStore = RecentFavoritesStore()
-    @State private var isFavorite: Bool = false
     @State private var intervalInput: String = ""
     @State private var cacheInput: String = ""
     
@@ -42,10 +40,8 @@ struct ContentView: View {
         .onAppear {
             intervalInput = String(settings.intervalMinutes)
             cacheInput = String(settings.cacheMaxMB)
-            isFavorite = favStore.isFavorite(engine.currentImageURL)
         }
         .onChange(of: engine.currentImageURL) { _ in
-            isFavorite = favStore.isFavorite(engine.currentImageURL)
         }
         .onChange(of: settings.intervalMinutes) { newValue in
             if String(newValue) != intervalInput {
@@ -138,21 +134,6 @@ struct ContentView: View {
                     HStack {
                         capsuleLabel(LocalizedStrings.text(for: "statusReady", language: settings.language))
                         Spacer()
-                        Button {
-                            if let currentURL = engine.currentImageURL {
-                                favStore.toggleFavorite(currentURL)
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                    isFavorite = favStore.isFavorite(currentURL)
-                                }
-                            }
-                        } label: {
-                            HStack(spacing: 6) {
-                                Image(systemName: isFavorite ? "heart.fill" : "heart")
-                                    .font(.system(size: 14, weight: .semibold))
-                                Text(isFavorite ? LocalizedStrings.text(for: "unfavorite", language: settings.language) : LocalizedStrings.text(for: "favorite", language: settings.language))
-                            }
-                        }
-                        .buttonStyle(FavoriteActionButtonStyle(active: isFavorite))
                     }
                     
                     Image(nsImage: img)
@@ -663,38 +644,6 @@ private struct GhostActionButtonStyle: ButtonStyle {
                     .stroke(Theme.border, lineWidth: 1)
             )
             .pointerHandCursor()
-    }
-}
-
-private struct FavoriteActionButtonStyle: ButtonStyle {
-    let active: Bool
-    
-    func makeBody(configuration: Configuration) -> some View {
-        let shape = RoundedRectangle(cornerRadius: 10, style: .continuous)
-        
-        configuration.label
-            .font(.system(size: 13, weight: .semibold))
-            .foregroundStyle(active ? Color.white : Theme.badgeBlueText)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 7)
-            .background(
-                shape
-                    .fill(active ? Theme.badgeBlueText : Theme.badgeBlueBackground)
-                    .opacity(configuration.isPressed ? 0.8 : 1.0)
-            )
-            .overlay(
-                shape
-                    .stroke(active ? Color.clear : Theme.border, lineWidth: 1)
-            )
-            .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .contentShape(shape)
-            .onHover { inside in
-                if inside {
-                    NSCursor.pointingHand.set()
-                } else {
-                    NSCursor.arrow.set()
-                }
-            }
     }
 }
 

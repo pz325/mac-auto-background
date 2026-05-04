@@ -15,7 +15,7 @@ final class Engine: ObservableObject {
     private var settings: AppSettings?
     private let changer = WallpaperChanger()
     private let history = HistoryStore()
-  private let recents = RecentFavoritesStore()
+  private let recents = RecentStore()
     
     func configure(with settings: AppSettings) {
         self.settings = settings

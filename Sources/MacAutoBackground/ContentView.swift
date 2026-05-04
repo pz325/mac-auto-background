@@ -6,6 +6,7 @@ struct ContentView: View {
     @EnvironmentObject var engine: Engine
     @State private var intervalInput: String = ""
     @State private var cacheInput: String = ""
+    @State private var currentCacheBytes: Int64 = 0
     
     var body: some View {
         GeometryReader { proxy in
@@ -40,8 +41,13 @@ struct ContentView: View {
         .onAppear {
             intervalInput = String(settings.intervalMinutes)
             cacheInput = String(settings.cacheMaxMB)
+            refreshCacheSize()
+        }
+        .onChange(of: settings.cacheMaxMB) { _ in
+            refreshCacheSize()
         }
         .onChange(of: engine.currentImageURL) { _ in
+            refreshCacheSize()
         }
         .onChange(of: settings.intervalMinutes) { newValue in
             if String(newValue) != intervalInput {
@@ -218,17 +224,32 @@ struct ContentView: View {
             fill: Theme.surface
         ) {
             VStack(alignment: .leading, spacing: 12) {
-                Button(LocalizedStrings.text(for: "openCacheDir", language: settings.language)) {
-                    openCacheDirectory()
+                // Cache usage summary
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text("\(currentCacheBytes / (1024 * 1024)) MB")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(Theme.nearBlack)
+                    
+                    let percentage = Int(min(100, max(0, Double(currentCacheBytes) / Double(Int64(settings.cacheMaxMB) * 1024 * 1024) * 100)))
+                    Text("used (\(percentage)%)")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(Theme.secondaryText)
                 }
-                .buttonStyle(SecondaryActionButtonStyle(expandToFill: true))
-                .pointerHandCursor()
+                .padding(.bottom, 4)
                 
-                Button(LocalizedStrings.text(for: "clearCache", language: settings.language)) {
-                    clearCache()
+                HStack(spacing: 12) {
+                    Button(LocalizedStrings.text(for: "openCacheDir", language: settings.language)) {
+                        openCacheDirectory()
+                    }
+                    .buttonStyle(SecondaryActionButtonStyle(expandToFill: true))
+                    .pointerHandCursor()
+                    
+                    Button(LocalizedStrings.text(for: "clearCache", language: settings.language)) {
+                        clearCache()
+                    }
+                    .buttonStyle(SecondaryActionButtonStyle(expandToFill: true))
+                    .pointerHandCursor()
                 }
-                .buttonStyle(GhostActionButtonStyle())
-                .pointerHandCursor()
             }
         }
     }
@@ -499,6 +520,10 @@ struct ContentView: View {
         }
     }
     
+    private func refreshCacheSize() {
+        currentCacheBytes = CacheManager.calculateTotalSize()
+    }
+    
     private func label(for p: ProviderType) -> String {
         switch p {
         case .auto: return LocalizedStrings.text(for: "autoSource", language: settings.language)
@@ -544,6 +569,7 @@ struct ContentView: View {
                     try fileManager.removeItem(at: file)
                 }
                 
+                refreshCacheSize()
                 print("已清除 \(files.count) 个缓存文件")
             } catch {
                 print("清除缓存失败：\(error.localizedDescription)")

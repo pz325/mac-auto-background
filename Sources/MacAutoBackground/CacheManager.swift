@@ -1,6 +1,21 @@
 import Foundation
 
 enum CacheManager {
+    static func calculateTotalSize() -> Int64 {
+        guard let dir = try? ImagesDirectory.url() else { return 0 }
+        let fm = FileManager.default
+        guard let items = try? fm.contentsOfDirectory(at: dir, includingPropertiesForKeys: [.fileSizeKey], options: [.skipsHiddenFiles]) else {
+            return 0
+        }
+        var total: Int64 = 0
+        for url in items {
+            if let rsrc = try? url.resourceValues(forKeys: [.fileSizeKey]) {
+                total += Int64(rsrc.fileSize ?? 0)
+            }
+        }
+        return total
+    }
+
     static func cleanupImagesIfNeeded(maxBytes: Int64, excluding keepURL: URL?) {
         guard let dir = try? ImagesDirectory.url() else { return }
         let fm = FileManager.default

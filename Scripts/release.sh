@@ -21,8 +21,15 @@ if [[ ! -d "$APP_PATH" ]]; then
 fi
 DIST_DIR="$ROOT_DIR/dist"
 mkdir -p "$DIST_DIR"
-ZIP_PATH="$DIST_DIR/MacAutoBackground_v${VERSION}.zip"
-DMG_PATH="$DIST_DIR/MacAutoBackground_v${VERSION}.dmg"
+
+if [[ "${1:-}" != "" ]]; then
+  ZIP_PATH="$DIST_DIR/MacAutoBackground_v${VERSION}.zip"
+  DMG_PATH="$DIST_DIR/MacAutoBackground_v${VERSION}.dmg"
+else
+  ZIP_PATH="$DIST_DIR/MacAutoBackground_temp.zip"
+  DMG_PATH="$DIST_DIR/MacAutoBackground_temp.dmg"
+fi
+
 rm -f "$ZIP_PATH" "$DMG_PATH"
 
 # Create ZIP

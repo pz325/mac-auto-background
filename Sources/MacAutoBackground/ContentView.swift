@@ -223,19 +223,27 @@ struct ContentView: View {
             description: LocalizedStrings.text(for: "libraryDescription", language: settings.language),
             fill: Theme.surface
         ) {
-            VStack(alignment: .leading, spacing: 12) {
-                // Cache usage summary
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Text("\(currentCacheBytes / (1024 * 1024)) MB")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(Theme.nearBlack)
+            VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 12) {
+                    // Cache usage summary
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text("\(currentCacheBytes / (1024 * 1024)) MB")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundStyle(Theme.nearBlack)
+                        
+                        let percentage = Int(min(100, max(0, Double(currentCacheBytes) / Double(Int64(settings.cacheMaxMB) * 1024 * 1024) * 100)))
+                        Text("used (\(percentage)%)")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundStyle(Theme.secondaryText)
+                    }
                     
-                    let percentage = Int(min(100, max(0, Double(currentCacheBytes) / Double(Int64(settings.cacheMaxMB) * 1024 * 1024) * 100)))
-                    Text("used (\(percentage)%)")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(Theme.secondaryText)
+                    labeledInput(
+                        title: LocalizedStrings.text(for: "cacheLimit", language: settings.language),
+                        placeholder: "128",
+                        text: $cacheInput,
+                        onChange: updateCacheLimit
+                    )
                 }
-                .padding(.bottom, 4)
                 
                 HStack(spacing: 12) {
                     Button(LocalizedStrings.text(for: "openCacheDir", language: settings.language)) {
@@ -261,20 +269,12 @@ struct ContentView: View {
             fill: Theme.surface
         ) {
             VStack(alignment: .leading, spacing: 16) {
-                HStack(alignment: .top, spacing: 12) {
-                    labeledInput(
-                        title: LocalizedStrings.text(for: "autoChangeInterval", language: settings.language),
-                        placeholder: "240",
-                        text: $intervalInput,
-                        onChange: updateInterval
-                    )
-                    labeledInput(
-                        title: LocalizedStrings.text(for: "cacheLimit", language: settings.language),
-                        placeholder: "128",
-                        text: $cacheInput,
-                        onChange: updateCacheLimit
-                    )
-                }
+                labeledInput(
+                    title: LocalizedStrings.text(for: "autoChangeInterval", language: settings.language),
+                    placeholder: "240",
+                    text: $intervalInput,
+                    onChange: updateInterval
+                )
                 
                 Divider()
                     .overlay(Theme.border)
